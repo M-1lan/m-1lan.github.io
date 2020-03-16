@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Intranet de l'assistance sur Paladium</title>
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+	<div id="mainview">
+		<section id="authwindow" class="window">
+			<div id="pagination">
+				<div id="grabspace"></div>
+				<div id="logospace"></div>
+				<div id="tocutbox"></div>
+				<div id="logobox">
+					<img id="logo" alt="Logo" src="./assets/images/logo-sm.png">
+				</div>
+			</div>
+			<div id="mainform">
+				<div class="mainformelement" id="formelementone">
+					<h2 id="windowtitle">Authentification</h2>
+				</div>
+				<form id="authform">
+					<div class="mainformelement" id="formelementtwo">
+						<label id="usernamelabel" class="authformlabel" for="usernameinput">Nom d'utilisateur</label>
+						<input id="usernameinput" class="authforminput" aria-label="Nom d'utilisateur" type="text" name="usernameinput" required>
+					</div>
+					<div class="mainformelement" id="formelementthree">
+						<label id="passwordlabel" class="authformlabel" for="passwordinput">Mot de passe</label>
+						<input id="passwordinput" class="authforminput" aria-label="Mot de passe" type="password" name="passwordinput" required>
+						<div id="resetpassword">
+							<a id="resetpasswordbtn" href="https://www.example.com">Mot de passe oublié ?</a>
+						</div>
+					</div>
+					<div class="mainformelement" id="formelementfour">
+						<input id="submitinput" class="authforminput" aria-label="Envoyer le formulaire" type="submit" name="submitinput" value="Envoyer le formulaire">
+					</div>
+				</form>
+			</div>
+		</section>
+	</div>
+	<style type="text/css">
+		body, html {
+			margin: 0;
+			padding: 0;
+			background: white;
+		}
+		#mainview {
+			width: 100vw;
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		#authwindow {
+			height: 250px;
+			width: 400px;
+			background: white;
+			border-radius: 11px;
+			-webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+			   -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+					box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+			position: relative;
+			z-index: 1;
+		}
+		#logospace {
+			height: 60px;
+			width: 170px;
+			background: white;
+			border-radius: 11px;
+			-webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+			   -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+					box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+			z-index: 2;
+			position: absolute;
+			transform: translate(16.5px, -30px);
+		}
+		#grabspace {
+			height: 10px;
+			width: 400px;
+			border-radius: 11px 11px 0px 0px;
+			z-index: 7;
+			position: absolute;
+			cursor: grab;
+		}
+		#logobox {
+			height: 60px;
+			width: 170px;
+			border-radius: 11px;
+			position: absolute;
+			z-index: 4;
+			transform: translate(16.5px, -30px);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		#logo {
+			width: 150px;
+		}
+		#logo::selection, #windowtitle::selection, .authformlabel::selection, .authforminput::selection {
+			background: none;
+		}
+		#tocutbox {
+			height: calc(30px + 11px + 20px);
+			width: calc(170px + 27.5px + 20px);
+			background: white;
+			border-radius: 11px 0 0 0;
+			position: absolute;
+			z-index: 3;
+			transform: translate(0px, 0px);
+		}
+		#mainform {
+			height: 250px;
+			width: calc(400px - 62.5px);
+			border-radius: 11px;
+			position: absolute;
+			z-index: 5;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			padding: 0 31.25px 0 31.25px;
+		}
+		.mainformelement {
+			margin: 11.7px 0 11.7px 0;
+			height: 31.25px;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		#windowtitle {
+			margin: 0;
+			font-family: 'Poppins', sans-serif;
+			font-weight: 700;
+			color: #404040;
+			font-size: 18.9px;
+		}
+		#authform {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+		.authforminput {
+			width: calc(400px - 62.5px - 4px - 6px);
+			height: calc(31.25px - 4px);
+			border: 2px solid #bfbfbf;
+			border-radius: 7.4px;
+			background: white;
+			padding: 0px;
+			padding-left: 6px;
+			margin: 0px;
+			outline: none;
+			font-family: 'Poppins', sans-serif;
+			font-weight: 400;
+			font-size: 18px;
+			position: absolute;
+		}
+		.authforminput:focus {
+			-webkit-box-shadow: inset 0px 0px 2px 1px rgba(0,0,0,0.5);
+			   -moz-box-shadow: inset 0px 0px 2px 1px rgba(0,0,0,0.5);
+					box-shadow: inset 0px 0px 2px 1px rgba(0,0,0,0.5);
+			border-color: #f17c30;
+		}
+		.authforminput#submitinput {
+			height: 31.25px;
+			width: 337.5px;
+			border: none;
+			background: linear-gradient(to right, #f17c30, #ed462f);
+			color: white;
+			font-weight: 600;
+			padding: 0;
+			cursor: pointer;
+		}
+		.authformlabel {
+			width: calc(400px - 62.5px);
+			height: calc(31.25px - 4px);
+			margin: 0;
+			padding-left: 8px;
+			position: relative;
+			z-index: 6;
+			display: block;
+			font-family: 'Poppins', sans-serif;
+			font-weight: 400;
+			font-size: 18px;
+			background-image: linear-gradient(to right, #f17c30, #ed462f);
+  			-webkit-background-clip: text;
+  			color: transparent;
+  			cursor: text;
+  			transition: all .2s ease-in-out;
+		}
+		.authformlabel::selection {
+			background: none;
+		}
+		#usernamelabel:hover ~ #usernameinput {
+			border-color: #f17c30;
+		}
+		#passwordlabel:hover ~ #passwordinput {
+			border-color: #f17c30;
+		}
+		.labelmini#usernamelabel {
+			transform: scale(0.5) translateX(50%);
+			transform-origin: top right;
+			color: #f17c30;
+			-webkit-background-clip: border;
+			background: none;
+		}
+		.labelmini#passwordlabel {
+			transform: scale(0.5) translateX(59%);
+			transform-origin: top right;
+			color: #f17c30;
+			-webkit-background-clip: border;
+			background: none;
+		}
+		#resetpassword {
+			position: absolute;
+			font-family: 'Poppins', sans-serif;
+			font-weight: 400;
+			font-size: 18px;
+			width: calc(400px - 62.5px - 16px);
+			padding-left: 16px;
+			transform: scale(0.5) translateY(30px);
+			transform-origin: bottom left;
+			cursor: pointer;
+			text-decoration: none;
+			color: #404040;
+		}
+		#resetpasswordbtn {
+			cursor: pointer;
+			text-decoration: none;
+			color: #404040;
+			display: block;
+		}
+		#resetpasswordbtn:hover {
+			background-image: linear-gradient(to right, #f17c30, #ed462f);
+  			-webkit-background-clip: text;
+  			color: transparent;
+  			width: auto;
+		}
+		#resetpassword, #resetpasswordbtn {
+			outline: none;
+		}
+		#resetpasswordbtn:focus {
+			background-image: linear-gradient(to right, #f17c30, #ed462f);
+  			-webkit-background-clip: text;
+  			color: transparent;
+  			width: auto;
+  			font-weight: 600;
+		}
+		.window, #logospace {
+			transition: transform .2s, box-shadow .2s;
+		}
+		.ui-draggable-dragging {
+			transform: rotate(1deg);
+			-webkit-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.50) !important;
+			   -moz-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.50) !important;
+					box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.50) !important;
+			opacity: 0.75;
+		}
+		.ui-draggable-dragging #logospace {
+			-webkit-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.50) !important;
+			   -moz-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.50) !important;
+					box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.50) !important;
+		}
+		.ui-draggable-dragging #grabspace {
+			cursor: grabbing;
+		}
+	</style>
+	<script type="text/javascript">
+		$(".authforminput").focus(function focused() {
+        	$(this).prev().addClass("labelmini");
+		});
+		$(".authforminput").focusout(function blured() {
+			if ( !$(this).val() ) { 
+         		$(this).prev().removeClass("labelmini");
+      		}
+		});
+		$('.window').draggable({
+    		containment : '#mainview',
+    		cursor : 'grabbing',
+    		handle: "#grabspace"
+		});
+	</script>
+</body>
+</html>
